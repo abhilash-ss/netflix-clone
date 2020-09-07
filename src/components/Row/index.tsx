@@ -9,7 +9,7 @@ const Row: FunctionComponent<RowProps> = ({ title, fetchUrl }) => {
     const fetchData = async () => {
       try {
         const response: ResponseType = await axios.get(fetchUrl);
-        setMovies(response.results);
+        setMovies(response.data.results);
         return response;
       } catch (err) {
         console.log(err);

@@ -22,5 +22,7 @@ export type MovieType = {
 };
 
 export type ResponseType = {
-  results: MovieType[];
+  data: {
+    results: MovieType[];
+  };
 };
