@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import axios from "../../axios";
+import { base_url } from "../../utils/constants";
 import { RowProps, MovieType, ResponseType } from "./types";
 
 const Row: FunctionComponent<RowProps> = ({ title, fetchUrl }) => {
@@ -18,12 +19,15 @@ const Row: FunctionComponent<RowProps> = ({ title, fetchUrl }) => {
     fetchData();
   }, [fetchUrl]);
 
-  console.log("checking state", movies);
+  console.table(movies);
   return (
-    <div>
+    <div className="row">
       <h2>{title}</h2>
-      {/* {container} */}
-      RowItems
+      <div className="row__posters">
+        {movies.map((movie: MovieType) => (
+          <img src={`${base_url}${movie.poster_path}`} alt={movie.title} />
+        ))}
+      </div>
     </div>
   );
 };
