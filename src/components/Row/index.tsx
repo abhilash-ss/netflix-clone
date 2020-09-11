@@ -3,7 +3,13 @@ import axios from "../../axios";
 import { base_url } from "../../utils/constants";
 import { RowProps, MovieType, ResponseType } from "./types";
 
-const Row: FunctionComponent<RowProps> = ({ title, fetchUrl }) => {
+import "./Row.scss";
+
+const Row: FunctionComponent<RowProps> = ({
+  title,
+  fetchUrl,
+  isLargeRow = false,
+}) => {
   const [movies, setMovies] = useState<MovieType[]>([]);
 
   useEffect(() => {
@@ -25,7 +31,14 @@ const Row: FunctionComponent<RowProps> = ({ title, fetchUrl }) => {
       <h2>{title}</h2>
       <div className="row__posters">
         {movies.map((movie: MovieType) => (
-          <img src={`${base_url}${movie.poster_path}`} alt={movie.title} />
+          <img
+            className={`row__poster ${isLargeRow && "row__poster--large"}`}
+            key={movie.id}
+            src={`${base_url}${
+              isLargeRow ? movie.poster_path : movie.backdrop_path
+            }`}
+            alt={movie.title}
+          />
         ))}
       </div>
     </div>
