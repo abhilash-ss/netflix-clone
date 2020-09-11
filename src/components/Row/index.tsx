@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import axios from "../../axios";
 import { base_url } from "../../utils/constants";
-import { RowProps, MovieType, ResponseType } from "./types";
+import { MovieType, ResponseType } from "../../utils/types";
+import { RowProps } from "./types";
 
 import "./Row.scss";
 
@@ -25,7 +26,6 @@ const Row: FunctionComponent<RowProps> = ({
     fetchData();
   }, [fetchUrl]);
 
-  console.table(movies);
   return (
     <div className="row">
       <h2>{title}</h2>
